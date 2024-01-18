@@ -1,0 +1,52 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World 8880</title>
+</head>
+<body>
+    <h1>Docker containerin sovellus! Portissa: 8880 (dev, Pasi, muokattu 20240110T10:15)</h1>
+<p> 
+  <div id="currentTime"></div>
+</p>
+    <p>Container ID: <span id="container-id"></span></p>
+
+    <script>
+        // Fetch and display container ID using JavaScript
+        fetch('/container-id')
+            .then(response => response.text())
+            .then(containerId => {
+                document.getElementById('container-id').textContent = containerId;
+            })
+            .catch(error => console.error('Error fetching container ID:', error));
+
+function getCurrentTime() {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+
+  // Format the time as HH:MM:SS
+  const formattedTime = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
+
+  return 'Updated: ' + formattedTime;
+}
+
+// Add a leading zero to single-digit numbers
+function padZero(num) {
+  return num < 10 ? '0' + num : num;
+}
+
+// Update the content of the HTML element with the current time
+function updateCurrentTime() {
+  const currentTimeElement = document.getElementById('currentTime');
+  currentTimeElement.textContent = getCurrentTime();
+}
+
+// Initial update
+updateCurrentTime();
+    </script>
+</body>
+</html>
