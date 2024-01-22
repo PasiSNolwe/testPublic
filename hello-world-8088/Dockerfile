@@ -8,4 +8,4 @@ COPY index.html /usr/share/nginx/html
 RUN echo "$(hostname)$(ifconfig eth0 | grep 'inet ' | awk '{print $2}')" > /usr/share/nginx/html/container-id
 
 # Expose the port on which Nginx is listening
-EXPOSE 8088
+EXPOSE 80
